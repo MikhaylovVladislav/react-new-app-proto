@@ -1,0 +1,37 @@
+
+.cover {
+	width: 860px;
+	height: 200px;
+}
+
+.general {
+	margin: 10px;
+}
+
+.general {
+	display: grid;
+	grid-template-areas:
+	"ava info";
+	grid-template-columns: 220px;
+}
+
+.ava {
+	grid-area: ava;
+}
+
+.ava img {
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+}
+
+.info {
+	color: beige;
+	margin-top: 10px;
+	grid-area: info;
+}
+
+.FIO {
+	margin-bottom: 10px;
+	font-size: 22px;
+}

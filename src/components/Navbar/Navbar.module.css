@@ -1,6 +1,5 @@
 .nav{
 	grid-area: n;
-	
 	margin-right: 10px;
 	
 }
@@ -13,9 +12,11 @@
 .item {
 	color: gray;
 	margin-bottom: 5px;
+	text-decoration: none;
 }
 
-.item.active {
+.item a.active {
 	color:gold;
-	
+	text-decoration: none;
 }
+

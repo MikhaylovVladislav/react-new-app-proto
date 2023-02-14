@@ -2,8 +2,13 @@ import React from 'react';
 import st from './Profile.module.css';
 import matrica from './../../images/matrica.png';
 import MyPosts from './MyPosts/MyPosts';
+import Post from "./MyPosts/Post/Post";
 
-const Profile = () => {
+
+
+
+const Profile = (props) => {
+
 	return (
 		<div>
 			<div>
@@ -20,7 +25,7 @@ const Profile = () => {
 					<div>Amount battle of WOT:blitz: 4983</div>
 				</div>
 			</div>
-			<MyPosts />
+			<MyPosts pd={props.postData}/>
 
 		</div>
 	);

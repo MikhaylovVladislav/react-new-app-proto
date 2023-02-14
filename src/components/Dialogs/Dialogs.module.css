@@ -1,12 +1,31 @@
-.header{
-	grid-area: h;
-	background-color: rgb(70, 77, 83);
-	margin-bottom: 10px;
+.dialogs{
+    display: grid;
+    grid-template-columns: 4fr 12fr;
+
+
 }
 
-.header img{
-	margin-top:1%;
-	margin-left: 10px;
-	width: 80px;
-	height: 20px;
+.dialogsItem{
+
+}
+
+.dialog{
+
+    color: brown;
+    text-decoration: none;
+}
+
+.dialog a.active{
+    color: gold;
+    text-decoration: none;
+}
+
+.messages{
+
+
+}
+
+.message{
+    padding: 4px;
+
 }

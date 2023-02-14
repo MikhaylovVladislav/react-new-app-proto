@@ -2,9 +2,11 @@ import React from 'react';
 import st from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+
+const MyPosts = (props) => {
+	let postElements = props.pd.map(p=><Post message={p.postText} countLike={p.countLike}/>);
 	return (
-		<div >
+		<div>
 			<div className={st.myPosts}>
 				My posts
 			</div>
@@ -12,9 +14,7 @@ const MyPosts = () => {
 				<textarea></textarea>
 				<button>Add post</button>
 			</div>
-			<Post message='Excuse me bro' countLike='27'/>
-			<Post message='Excuse ... i am not you bro' countLike='19'/>
-
+			{postElements}
 		</div>
 
 	);

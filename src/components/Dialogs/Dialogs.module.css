@@ -1,31 +1,57 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-columns: 4fr 12fr;
 
 
 }
 
-.dialogsItem{
 
-}
 
-.dialog{
+.dialog {
 
     color: brown;
     text-decoration: none;
 }
 
-.dialog a.active{
+.dialog a.active {
     color: gold;
     text-decoration: none;
 }
 
-.messages{
+.messages {
+    border-radius: 10px;
+    padding: 5px;
+    color: #9da4a9;
+    background-color: rgb(41, 41, 41);
+}
 
+.message {
+    padding: 10px;
 
 }
 
-.message{
-    padding: 4px;
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}
+
+.ta{
+   margin-left: 12px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 500px;
+    height: 35px;
+    margin-bottom: -15px;
+
+}
+.toGo{
+    height: 44px;
+    margin-bottom: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+
 
 }

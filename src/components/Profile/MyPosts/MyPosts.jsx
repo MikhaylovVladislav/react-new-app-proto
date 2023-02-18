@@ -4,17 +4,20 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
-	let postElements = props.pD.postData.map(p=><Post message={p.postText} countLike={p.countLike}/>);
+	let postElements = props.store.getPostData().map(p=><Post message={p.postText} countLike={p.countLike}/>);
 	let refTextAreaPost=React.createRef();
 
 	let addPost =()=>{
-		props.addPost();
+		props.store.addPost();
 	}
 
 	let editNewPostText = ()=>{
 		let text = refTextAreaPost.current.value;
-		props.editPostText(text);
+		//props.editPostText(text);
+		props.store.editNewPost(text);
 	}
+
+	let valueTextArea=props.store.getEditNewPost();
 
 	return (
 		<div>
@@ -22,7 +25,7 @@ const MyPosts = (props) => {
 				My posts
 			</div>
 			<div>
-				<textarea onChange={editNewPostText} ref={refTextAreaPost} value={props.pD.editNewPost} />
+				<textarea onChange={editNewPostText} ref={refTextAreaPost} value={valueTextArea} />
 				<button onClick={addPost}>Add post</button>
 			</div>
 			{postElements}

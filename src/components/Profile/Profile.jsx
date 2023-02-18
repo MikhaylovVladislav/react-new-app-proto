@@ -7,7 +7,6 @@ import MyPosts from './MyPosts/MyPosts';
 
 
 const Profile = (props) => {
-
 	return (
 		<div>
 			<div>
@@ -24,7 +23,7 @@ const Profile = (props) => {
 					<div>Amount battle of WOT:blitz: 4983</div>
 				</div>
 			</div>
-			<MyPosts pD={props.state} addPost={props.addPost} editPostText={props.editPostText}/>
+			<MyPosts store={props.store} />
 
 		</div>
 	);

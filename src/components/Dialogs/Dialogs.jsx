@@ -4,17 +4,19 @@ import Message from './Message/Message';
 import DialogsItem from "./DialogItem/DialogsItem";
 
 const Dialogs = (props) => {
-    const dialoges = props.state.dialogsData.map(el => <DialogsItem dName={el.name} dId={el.id}/>);
-    const messages = props.state.messagesData.map(el => <Message message={el.messageText} isMyMess={el.isMyMess}/>);
+    const dialoges = props.store.getDialogsData().map(el => <DialogsItem dName={el.name} dId={el.id}/>);
+    const messages = props.store.getMessageData().map(el => <Message message={el.messageText} isMyMess={el.isMyMess}/>);
     let refMyMess = React.createRef();
     const addMyMessage = () => {
-        props.addMyMessage();
+        props.store.addMyMessage();
     }
 
     let editNewMessage = () => {
         let text = refMyMess.current.value;
-        props.editMessageText(text);
+        props.store.editNewMessage(text);
     }
+
+    let valueTextArea = props.store.getEditNewMessage();
     return (
         <div className={st.dialogs}>
             <div className={st.dialogItem}>
@@ -25,7 +27,7 @@ const Dialogs = (props) => {
                     <div>
                         {messages}
                         <div>
-                            <textarea onChange={editNewMessage} className={st.ta} ref={refMyMess} value={props.state.editNewMessage} />
+                            <textarea onChange={editNewMessage} className={st.ta} ref={refMyMess} value={valueTextArea} />
                             <button className={st.toGo} onClick={addMyMessage}>Отправить</button>
                         </div>
                     </div>

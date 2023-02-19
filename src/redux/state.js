@@ -1,7 +1,8 @@
 /*let rerenderRoot = ()=>{
     console.log('rerend');
 }*/
-
+const EDIT_NEW_POST = 'EDIT-NEW-POST';
+const ADD_POST = 'ADD-POST';
 
 let store = {
     _state: {
@@ -41,10 +42,14 @@ let store = {
 
 
     },
+    getState(){
+      return this._state;
+    },
     _subscriber() {
         console.log('STORE SUBSCRIBER');
     },
     subscribe(observer) {
+        //console.log(observer);
         this._subscriber = observer;
     },
 
@@ -97,12 +102,12 @@ let store = {
         this.setPostData(newEl.id, newEl.postText, newEl.countLike);
     },
 
-    addPost() {
+   /* addPost() {
         let test = this.getEditNewPost();
         this.addPostData(test);
         this.setEditNewPost('');
-        this._subscriber(store);
-    },
+        this._subscriber(this);
+    },*/
 
     setMessageData(id,friendId, isMyMess,text){
         if(this.getMessageData().includes(id)){
@@ -136,16 +141,33 @@ let store = {
         let test = this.getEditNewMessage();
         this.addMessageData(test);
         this.setEditNewMessage('');
-        this._subscriber(store);
+        this._subscriber(this);
     },
-    editNewPost(editText){
+    /*editNewPost(editText){
         this.setEditNewPost(editText);
-        this._subscriber(store);
-    },
+        this._subscriber(this);
+    },*/
     editNewMessage(editText){
         this.setEditNewMessage(editText)
-        this._subscriber(store);
+        this._subscriber(this);
     },
+    dispatch(action){
+        switch (action.type) {
+            case 'ADD-POST':
+                let test = this.getEditNewPost();
+                this.addPostData(test);
+                this.setEditNewPost('');
+                this._subscriber(this);
+                break;
+            case 'EDIT-NEW-POST':
+                this.setEditNewPost(action.editText);
+                this._subscriber(this);
+                break;
+            default:
+                console.log('none name method');
+
+        }
+    }
 
 };
 
@@ -176,5 +198,11 @@ export let editNewMessage = (editText) => {
 /*export const subscribe = (observer)=>{
     rerenderRoot=observer;
 }*/
+
+export const addPostActionCreator=()=>({type: ADD_POST});
+export const editNewPostTextActionCreator = (text)=>{
+    return { type: EDIT_NEW_POST, editText: text}
+};
+
 
 export default store;

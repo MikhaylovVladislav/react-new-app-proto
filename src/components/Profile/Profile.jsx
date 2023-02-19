@@ -23,7 +23,7 @@ const Profile = (props) => {
 					<div>Amount battle of WOT:blitz: 4983</div>
 				</div>
 			</div>
-			<MyPosts store={props.store} />
+			<MyPosts store={props.store} dispatch={props.dispatch} />
 
 		</div>
 	);

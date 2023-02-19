@@ -3,6 +3,8 @@
 }*/
 const EDIT_NEW_POST = 'EDIT-NEW-POST';
 const ADD_POST = 'ADD-POST';
+const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
+const EDIT_NEW_MESSAGE = 'EDIT-NEW-MESSAGE';
 
 let store = {
     _state: {
@@ -137,20 +139,20 @@ let store = {
         this.setMessageData(newEl.id,newEl.friendId,newEl.isMуMess, newEl.messageText);
 
     },
-    addMyMessage(){
+   /* addMyMessage(){
         let test = this.getEditNewMessage();
         this.addMessageData(test);
         this.setEditNewMessage('');
         this._subscriber(this);
-    },
+    },*/
     /*editNewPost(editText){
         this.setEditNewPost(editText);
         this._subscriber(this);
     },*/
-    editNewMessage(editText){
+  /*  editNewMessage(editText){
         this.setEditNewMessage(editText)
         this._subscriber(this);
-    },
+    },*/
     dispatch(action){
         switch (action.type) {
             case 'ADD-POST':
@@ -161,6 +163,16 @@ let store = {
                 break;
             case 'EDIT-NEW-POST':
                 this.setEditNewPost(action.editText);
+                this._subscriber(this);
+                break;
+            case ADD_MY_MESSAGE:
+                let test1 = this.getEditNewMessage();
+                this.addMessageData(test1);
+                this.setEditNewMessage('');
+                this._subscriber(this);
+                break;
+            case EDIT_NEW_MESSAGE:
+                this.setEditNewMessage(action.editText)
                 this._subscriber(this);
                 break;
             default:
@@ -202,6 +214,11 @@ export let editNewMessage = (editText) => {
 export const addPostActionCreator=()=>({type: ADD_POST});
 export const editNewPostTextActionCreator = (text)=>{
     return { type: EDIT_NEW_POST, editText: text}
+};
+
+export const addMyMessageActionCreator=()=>({type: ADD_MY_MESSAGE});
+export const editNewMessageActionCreator = (text)=>{
+    return { type: EDIT_NEW_MESSAGE, editText: text}
 };
 
 

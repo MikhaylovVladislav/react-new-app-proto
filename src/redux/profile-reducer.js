@@ -7,11 +7,9 @@ const profileReducer=(action, store)=> {
             let test = store.getEditNewPost();
             store.addPostData(test);
             store.setEditNewPost('');
-            store._subscriber(store);
             break; //return
         case 'EDIT-NEW-POST':
             store.setEditNewPost(action.editText);
-            store._subscriber(store);
             let ENP=store.getEditNewPost();
             break;//return
         default:

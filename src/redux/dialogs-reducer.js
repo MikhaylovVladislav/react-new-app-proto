@@ -6,11 +6,9 @@ const dialogsReducer = (action, store) => {
             let test1 = store.getEditNewMessage();
             store.addMessageData(test1);
             store.setEditNewMessage('');
-            store._subscriber(store);
             break;
         case EDIT_NEW_MESSAGE:
             store.setEditNewMessage(action.editText)
-            store._subscriber(store);
             break;
         default:
             console.log('none name method');

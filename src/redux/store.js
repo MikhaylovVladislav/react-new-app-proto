@@ -134,6 +134,7 @@ let store = {
     dispatch(action) {
         profileReducer(action, this);
         dialogsReducer(action, this);
+        this._subscriber(this);
     }
 
 };

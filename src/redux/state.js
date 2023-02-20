@@ -1,10 +1,9 @@
-/*let rerenderRoot = ()=>{
-    console.log('rerend');
-}*/
-const EDIT_NEW_POST = 'EDIT-NEW-POST';
-const ADD_POST = 'ADD-POST';
+import dialogsReducer from './dialogs-reducer';
+import profileReducer from "./profile-reducer";
 const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
 const EDIT_NEW_MESSAGE = 'EDIT-NEW-MESSAGE';
+const EDIT_NEW_POST = 'EDIT-NEW-POST';
+const ADD_POST = 'ADD-POST';
 
 let store = {
     _state: {
@@ -58,7 +57,9 @@ let store = {
     getPostData(id) {
         if (id == null) {
             return this._state.profilePage.postData;
+
         } else {
+
             return this._state.profilePage.postData[id];
         }
     },
@@ -79,37 +80,36 @@ let store = {
     setPostData(id, value, count) {
         if (this.getPostData().includes(id)) {
             console.log('Изменение');
+
             this._state.profilePage.postData[id].postText = value;
             this._state.profilePage.postData[id].countLike = count;
         } else {
             console.log('Доваление');
             let newPost={id: id, postText: value, countLike: count};
-            this._state.profilePage.postData.push(newPost);
-         /*   this._state.profilePage.postData[id].id = id;
-            this._state.profilePage.postData[id].postText = value;
-            this._state.profilePage.postData[id].countLike = count;*/
+
+           this._state.profilePage.postData.push(newPost);
         }
 
     },
 
-    setEditNewPost(value){
-      this._state.profilePage.editNewPost=value;
-    },
+
     getEditNewPost() {
         return this._state.profilePage.editNewPost;
+
     },
+
+   setEditNewPost(value){
+        this._state.profilePage.editNewPost=value;
+
+    },
+
     addPostData(postText) {
+
         let lastEl = this._state.profilePage.postData.at(-1);
         let newEl = {id: lastEl.id++, postText: postText, countLike: 0}
         this.setPostData(newEl.id, newEl.postText, newEl.countLike);
     },
 
-   /* addPost() {
-        let test = this.getEditNewPost();
-        this.addPostData(test);
-        this.setEditNewPost('');
-        this._subscriber(this);
-    },*/
 
     setMessageData(id,friendId, isMyMess,text){
         if(this.getMessageData().includes(id)){
@@ -119,11 +119,7 @@ let store = {
         }else{
             let newMessage={id: id, friendId: friendId, isMyMess: isMyMess, messageText: text};
             this._state.dialogsPage.messagesData.push(newMessage);
-/*          this._state.dialogsPage.messagesData[id].id=id;
-            this._state.dialogsPage.messagesData[id].friendId=friendId;
-            this._state.dialogsPage.messagesData[id].isMyMess=isMyMess;
-            this._state.dialogsPage.messagesData[id].messageText=text;
-        */}
+}
     },
 
     getEditNewMessage(){
@@ -139,6 +135,13 @@ let store = {
         this.setMessageData(newEl.id,newEl.friendId,newEl.isMуMess, newEl.messageText);
 
     },
+   /* dispatch(action){
+       dialogsReducer(this._state.dialogsPage, action, this);
+        profileReducer(this._state.profilePage, action, store);
+        
+    }*/
+
+
    /* addMyMessage(){
         let test = this.getEditNewMessage();
         this.addMessageData(test);
@@ -153,7 +156,9 @@ let store = {
         this.setEditNewMessage(editText)
         this._subscriber(this);
     },*/
-    dispatch(action){
+
+
+   /*dispatch(action){
         switch (action.type) {
             case 'ADD-POST':
                 let test = this.getEditNewPost();
@@ -165,7 +170,7 @@ let store = {
                 this.setEditNewPost(action.editText);
                 this._subscriber(this);
                 break;
-            case ADD_MY_MESSAGE:
+            /!*case ADD_MY_MESSAGE:
                 let test1 = this.getEditNewMessage();
                 this.addMessageData(test1);
                 this.setEditNewMessage('');
@@ -174,14 +179,21 @@ let store = {
             case EDIT_NEW_MESSAGE:
                 this.setEditNewMessage(action.editText)
                 this._subscriber(this);
-                break;
+                break;*!/
             default:
                 console.log('none name method');
 
         }
+    }*/
+
+    dispatch(action){
+       profileReducer(action, store);
+       dialogsReducer(action, store);
     }
 
 };
+
+
 
 /*export let addPost = () => {
     let newPost = {id: 3, postText: state.profilePage.editNewPost, countLike: 0}
@@ -211,15 +223,9 @@ export let editNewMessage = (editText) => {
     rerenderRoot=observer;
 }*/
 
-export const addPostActionCreator=()=>({type: ADD_POST});
-export const editNewPostTextActionCreator = (text)=>{
-    return { type: EDIT_NEW_POST, editText: text}
-};
 
-export const addMyMessageActionCreator=()=>({type: ADD_MY_MESSAGE});
-export const editNewMessageActionCreator = (text)=>{
-    return { type: EDIT_NEW_MESSAGE, editText: text}
-};
+
+
 
 
 export default store;

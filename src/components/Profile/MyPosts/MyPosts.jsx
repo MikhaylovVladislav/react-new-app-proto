@@ -1,9 +1,10 @@
 import React from 'react';
 import st from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostActionCreator, editNewPostTextActionCreator} from "../../../redux/state";
+import {addPostActionCreator, editNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
+
 	let postElements = props.store.getPostData().map(p=><Post message={p.postText} countLike={p.countLike}/>);
 	let refTextAreaPost=React.createRef();
 

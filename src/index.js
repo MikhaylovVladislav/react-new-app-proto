@@ -4,19 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/redux-store";
+import StoreContext from './StoreContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export let rerenderRoot = (state)=> {
+export let rerenderRoot = (state) => {
     root.render(
-        <React.StrictMode>
-            <App store={state}/>
-        </React.StrictMode>
+        <StoreContext.Provider value={store}>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </StoreContext.Provider>
     );
 }
 rerenderRoot(store); //(state.getState()) to try
 
 /*subscribe(rerenderRoot);*/
-store.subscribe(()=>rerenderRoot(store));
+store.subscribe(() => rerenderRoot(store));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

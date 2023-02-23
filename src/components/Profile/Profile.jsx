@@ -19,7 +19,7 @@ const Profile = (props) => {
 					<div>Amount battle of WOT:blitz: 4983</div>
 				</div>
 			</div>
-			<MyPostsContainer store={props.store}/>
+			<MyPostsContainer />
 
 		</div>
 	);

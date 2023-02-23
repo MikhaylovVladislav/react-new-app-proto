@@ -1,5 +1,5 @@
-import dialogsReducer from './dialogs-reducer';
-import profileReducer from "./profile-reducer";
+/*import dialogsReducer from './dialogs-reducer';
+import profileReducer from "./profile-reducer";*/
 
 let store = {
     _state: {
@@ -8,7 +8,7 @@ let store = {
                 {id: 1, postText: 'Excuse me bro', countLike: '27'},
                 {id: 2, postText: 'Excuse ... i am not you bro', countLike: '19'}
             ],
-            editNewPost: ''
+            editNewPost: '22'
         },
 
         dialogsPage: {
@@ -131,11 +131,7 @@ let store = {
 
     },
 
-    dispatch(action) {
-        profileReducer(action, this);
-        dialogsReducer(action, this);
-        this._subscriber(this);
-    }
+
 
 };
 

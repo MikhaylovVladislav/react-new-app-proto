@@ -1,41 +1,34 @@
 import React from 'react';
 import st from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostActionCreator, editNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
 
-	let postElements = props.store.getPostData().map(p=><Post message={p.postText} countLike={p.countLike}/>);
-	let refTextAreaPost=React.createRef();
+    let postElements = props.statePage.postData.map(p => <Post message={p.postText} countLike={p.countLike}/>);
 
-	let addPost =()=>{
-		//props.store.addPost();
-		props.dispatch(addPostActionCreator());
-	}
+    let refTextAreaPost = React.createRef();
+    let onAddPost = () => {
+        props.onAddPost();
+    }
 
-	let editNewPostText = ()=>{
-		let text = refTextAreaPost.current.value;
-		//props.editPostText(text);
-		//props.store.editNewPost(text);
-		let action = editNewPostTextActionCreator(text);
-		props.dispatch(action);
-	}
+    let onEditNewPostText = () => {
+        let text = refTextAreaPost.current.value;
+        props.onEditNewPostText(text);
+    }
 
-	let valueTextArea=props.store.getEditNewPost();
+    return (
+        <div>
+            <div className={st.myPosts}>
+                My posts
+            </div>
+            <div>
+                <textarea onChange={onEditNewPostText} ref={refTextAreaPost} value={props.valueTA}/>
+                <button onClick={onAddPost}>Add post</button>
+            </div>
+            {postElements}
+        </div>
 
-	return (
-		<div>
-			<div className={st.myPosts}>
-				My posts
-			</div>
-			<div>
-				<textarea onChange={editNewPostText} ref={refTextAreaPost} value={valueTextArea} />
-				<button onClick={addPost}>Add post</button>
-			</div>
-			{postElements}
-		</div>
-
-	);
+    );
 }
 
 export default MyPosts;

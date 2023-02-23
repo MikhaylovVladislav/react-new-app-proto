@@ -1,11 +1,7 @@
 import React from 'react';
 import st from './Profile.module.css';
 import matrica from './../../images/matrica.png';
-import MyPosts from './MyPosts/MyPosts';
-
-
-
-
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 const Profile = (props) => {
 	return (
 		<div>
@@ -23,7 +19,7 @@ const Profile = (props) => {
 					<div>Amount battle of WOT:blitz: 4983</div>
 				</div>
 			</div>
-			<MyPosts store={props.store} dispatch={props.dispatch} />
+			<MyPostsContainer store={props.store}/>
 
 		</div>
 	);

@@ -3,9 +3,9 @@ const EDIT_NEW_MESSAGE = 'EDIT-NEW-MESSAGE';
 
 let initState = {
     messagesData: [
-        {id: 1, friendId: 2, isMyMess: false, messageText: 'Когда 100 рублей вернешь'},
+        {id: 1, friendId: 2, isMyMess: false, messageText: 'Я сегодня не выйду'},
         {id: 2, friendId: 3, isMyMess: true, messageText: 'Пошли за вискасом'},
-        {id: 3, friendId: 3, isMyMess: false, messageText: 'Кабель'},
+        {id: 3, friendId: 3, isMyMess: false, messageText: 'Заманил'},
         {id: 4, friendId: 1, isMyMess: true, messageText: 'hello im Borka'},
     ],
 

@@ -4,16 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/redux-store";
-import StoreContext from './StoreContext';
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export let rerenderRoot = (state) => {
     root.render(
-        <StoreContext.Provider value={store}>
+        <Provider store={state}>
             <React.StrictMode>
-                <App />
+                <App/>
             </React.StrictMode>
-        </StoreContext.Provider>
+        </Provider>
     );
 }
 rerenderRoot(store); //(state.getState()) to try

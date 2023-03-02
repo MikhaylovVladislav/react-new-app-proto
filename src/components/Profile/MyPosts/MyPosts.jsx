@@ -3,8 +3,7 @@ import st from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-
-    let postElements = props.statePage.postData.map(p => <Post message={p.postText} countLike={p.countLike}/>);
+    let postElements = props.profilePage.postData.map(p => <Post message={p.postText} countLike={p.countLike}/>);
 
     let refTextAreaPost = React.createRef();
     let onAddPost = () => {
@@ -22,7 +21,7 @@ const MyPosts = (props) => {
                 My posts
             </div>
             <div>
-                <textarea onChange={onEditNewPostText} ref={refTextAreaPost} value={props.valueTA}/>
+                <textarea onChange={onEditNewPostText} ref={refTextAreaPost} value={props.profilePage.editNewPost}/>
                 <button onClick={onAddPost}>Add post</button>
             </div>
             {postElements}

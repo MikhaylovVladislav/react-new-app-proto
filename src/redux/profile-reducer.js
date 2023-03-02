@@ -8,20 +8,26 @@ let initState={
     ],
     editNewPost: ''
 }
-const profileReducer=(store=initState, action)=> {
+const profileReducer=(state=initState, action)=> {
 
     switch (action.type) {
-        case 'ADD-POST':
-            let test=store.editNewPost;
-            store.postData.push({id:3, postText: test, countLike: '0'});
-            store.editNewPost='';
-            return store;
-        case 'EDIT-NEW-POST':
-
-            store.editNewPost=action.editText;
-            return store;
+        case ADD_POST:{
+            let stateCopy={...state}
+            stateCopy.postData=[...state.postData]
+            let test=stateCopy.editNewPost;
+            let newPost = {id:3, postText: test, countLike: '0'};
+            stateCopy.postData.push(newPost);
+            stateCopy.editNewPost='';
+            return stateCopy;
+        }
+        case EDIT_NEW_POST:{
+            let stateCopy={...state}
+            stateCopy.editNewPost=action.editText;
+            return stateCopy;
+        }
         default:
-           return store;
+            console.log('none name method at Profile');
+           return state;
     }
 }
 

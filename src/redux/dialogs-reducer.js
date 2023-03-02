@@ -16,19 +16,25 @@ let initState = {
     ],
     editNewMessage: ''
 }
-const dialogsReducer = (store=initState, action) => {
+const dialogsReducer = (state=initState, action) => {
     switch (action.type) {
-        case ADD_MY_MESSAGE:
-            let test=store.editNewMessage;
-            store.messagesData.push({id: 5, friendId: 3, isMyMess: true, messageText: test});
-            store.editNewMessage='';
-            return store;
-        case EDIT_NEW_MESSAGE:
-            store.editNewMessage=action.editText;
-            return store;
+        case ADD_MY_MESSAGE:{
+            let stateCopy={...state}
+            stateCopy.messagesData=[...state.messagesData]
+            let test=stateCopy.editNewMessage;
+            let newMessage = {id: 5, friendId: 3, isMyMess: true, messageText: test};
+          stateCopy.messagesData.push(newMessage);
+            stateCopy.editNewMessage ='';
+            return stateCopy;
+        }
+        case EDIT_NEW_MESSAGE:{
+            let stateCopy={...state}
+            stateCopy.editNewMessage=action.editText;
+            return stateCopy;
+        }
         default:
-            console.log('none name method');
-            return store;
+            console.log('none name method at Dialogs');
+            return state;
 
 
     }

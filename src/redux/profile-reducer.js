@@ -12,18 +12,19 @@ const profileReducer=(state=initState, action)=> {
 
     switch (action.type) {
         case ADD_POST:{
-            let stateCopy={...state}
-            stateCopy.postData=[...state.postData]
-            let test=stateCopy.editNewPost;
+            let test=state.editNewPost;
             let newPost = {id:3, postText: test, countLike: '0'};
-            stateCopy.postData.push(newPost);
-            stateCopy.editNewPost='';
-            return stateCopy;
+            return {
+                ...state,
+                editNewPost: '',
+                postData: [...state.postData, newPost]
+            };
         }
         case EDIT_NEW_POST:{
-            let stateCopy={...state}
-            stateCopy.editNewPost=action.editText;
-            return stateCopy;
+            return {
+                ...state,
+                editNewPost: action.editText
+            };
         }
         default:
             console.log('none name method at Profile');

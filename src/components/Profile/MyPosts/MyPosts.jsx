@@ -3,7 +3,7 @@ import st from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-    let postElements = props.profilePage.postData.map(p => <Post message={p.postText} countLike={p.countLike}/>);
+    let postElements = props.profilePage.postData.map(p => <Post key={p.id} message={p.postText} countLike={p.countLike}/>);
 
     let refTextAreaPost = React.createRef();
     let onAddPost = () => {

@@ -2,13 +2,11 @@ import React from 'react';
 import st from './Dialogs.module.css';
 import Message from './Message/Message';
 import DialogsItem from "./DialogItem/DialogsItem";
-import {addMyMessageActionCreator, editNewMessageActionCreator} from "../../redux/dialogs-reducer";
-import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
-import dialogsContainer from "./DialogsContainer";
+
 
 const Dialogs = (props) => {
-    const dialogs = props.dialogsPage.dialogsData.map(el => <DialogsItem dName={el.name} dId={el.id}/>);
-    const messages = props.dialogsPage.messagesData.map(el => <Message message={el.messageText} isMyMess={el.isMyMess}/>);
+    const dialogs = props.dialogsPage.dialogsData.map(el => <DialogsItem key={el.id}  dName={el.name} dId={el.id}/>);
+    const messages = props.dialogsPage.messagesData.map(el => <Message key={el.id}  message={el.messageText} isMyMess={el.isMyMess}/>);
 
 
     let refMyMess = React.createRef();

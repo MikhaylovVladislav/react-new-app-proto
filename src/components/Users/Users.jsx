@@ -5,13 +5,14 @@ import userPhoto from './../../Assets/Images/User.png';
 
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+   
+    componentDidMount() {
         if(this.props.usersPage.users.length===0) {
             axios.default.get("https://social-network.samuraijs.com/api/1.0/users")
                 .then(response => this.props.setUsers(response.data.items))
         }
     }
+
     render() {
         return ( <div> <button>sss</button>
             <div>ALL USERS</div>

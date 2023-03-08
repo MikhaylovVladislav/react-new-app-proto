@@ -6,12 +6,12 @@ let Users = (props)=>{
     let countPage=Math.ceil(props.totalCount/props.pageSize);
     let pages=[];
     for(let i=1; i<= countPage ;i++){
-        if(i<50) {
+        if(i<47) {
             pages.push(i);
         }
     }
     return ( <div>
-        <div>{pages.map(p=><span onClick={()=>props.onChangePage(p) } > {p} </span>)}</div>
+        <div>{pages.map(p=><span onClick={()=>props.onChangePage(p) } className={props.currentPage==p ? st.selectedPage:st.unselectedPage} > {p} </span>)}</div>
         {props.usersPage.users.map(u => <div key={u.id}>
             <div>
                 <div><img className={st.avaPhoto} src={u.photos.small==null ? userPhoto : u.photos.small }></img></div>

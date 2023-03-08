@@ -2,3 +2,12 @@
     height: 60px;
     width: 60px;
 }
+.selectedPage{
+    background-color: #dc1818;
+    font-weight: 700;
+}
+
+.unselectedPage{
+    background-color: gold;
+    font-weight: 300;
+}

@@ -1,12 +1,15 @@
 const EDIT_NEW_POST = 'EDIT-NEW-POST';
 const ADD_POST = 'ADD-POST';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
 
 let initState={
     postData: [
         {id: 1, postText: 'Excuse me bro', countLike: '27'},
         {id: 2, postText: 'Excuse ... i am not you bro', countLike: '19'}
     ],
-    editNewPost: ''
+    editNewPost: '',
+    profile: null,
+    currentUserProfile:2
 }
 const profileReducer=(state=initState, action)=> {
 
@@ -26,6 +29,12 @@ const profileReducer=(state=initState, action)=> {
                 editNewPost: action.editText
             };
         }
+        case SET_USER_PROFILE: {
+            return{
+                ...state,
+                profile: {...action.profile}
+            }
+        }
         default:
             console.log('none name method at Profile');
            return state;
@@ -38,4 +47,5 @@ export const addPostActionCreator=()=>({type: ADD_POST});
 export const editNewPostTextActionCreator = (text)=>{
     return { type: EDIT_NEW_POST, editText: text}
 };
+export const setUserProfile = (profile)=>({type: SET_USER_PROFILE, profile});
 export default profileReducer;

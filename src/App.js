@@ -10,6 +10,8 @@ import Settings from './components/Settings/Settings'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 
@@ -17,11 +19,11 @@ const App = (props) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/profile/:userId?' element={<ProfileContainer />}/>
                         <Route path='/dialogs/*' element={<DialogsContainer/>}/>
                         <Route path='/news' element={<News />}/>
                         <Route path='/friends' element={<Friends />}/>

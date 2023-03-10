@@ -16,7 +16,7 @@ import Preloader from "../Common/Preloader/Preloader";
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        if (this.props.usersPage.users.length === 0) {
+        if (this.props.users.length === 0) {
             axios.default.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(response => {
                     this.props.setUsers(response.data.items);
@@ -45,7 +45,7 @@ class UsersContainer extends React.Component {
                       pageSize={this.props.pageSize}
                       follow={this.props.follow}
                       unfollow={this.props.unfollow}
-                      usersPage={this.props.usersPage}
+                      users={this.props.users}
                    currentPage={this.props.currentPage}
                       onChangePage={this.onChangePage}
                    toggleIsFetching={this.props.toggleIsFetching}
@@ -57,7 +57,7 @@ class UsersContainer extends React.Component {
 }
 let mapStateToProps = (state)=> {
     return {
-        usersPage: state.usersPage,
+        users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,

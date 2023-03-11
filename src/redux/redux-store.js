@@ -13,7 +13,10 @@ let state= combineReducers({
 
 const store = createStore(state);
 
+window.store=store
 export default store;
+
+
 /*
 dispatch(action) {
     profileReducer(this,action);

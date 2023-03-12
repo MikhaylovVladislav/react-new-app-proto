@@ -3,6 +3,7 @@ import {addMyMessageActionCreator, editNewMessageActionCreator} from "../../redu
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {WithAuthNavigate} from "../../HOC/WithAuthNavigate";
+import {compose} from "redux";
 
 let mapStateToProps =(state)=>{
     return {
@@ -18,4 +19,7 @@ let mapDispatchToProps=(dispatch)=> {
 }
 
 
-export default WithAuthNavigate(connect(mapStateToProps, mapDispatchToProps)(Dialogs));
+export default compose(
+    WithAuthNavigate,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Dialogs)

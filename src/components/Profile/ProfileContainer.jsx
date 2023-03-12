@@ -4,6 +4,7 @@ import {setUserProfile, getUserProfile} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {useParams,} from 'react-router-dom';
 import {WithAuthNavigate} from  './../../HOC/WithAuthNavigate';
+import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
@@ -37,4 +38,7 @@ export let UseNavigate=(props)=>{
     )
 }
 
-export default WithAuthNavigate(connect(mapsStateToProps, {setUserProfile, getUserProfile})(UseNavigate));
+export default compose (
+    connect(mapsStateToProps, {setUserProfile, getUserProfile}),
+    WithAuthNavigate
+    ) (UseNavigate)

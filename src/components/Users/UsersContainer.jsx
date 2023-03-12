@@ -11,7 +11,7 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import {Navigate} from "react-router-dom"
+import {WithAuthNavigate} from "../../HOC/WithAuthNavigate";
 
 
 class UsersContainer extends React.Component {
@@ -24,7 +24,6 @@ class UsersContainer extends React.Component {
         this.props.getUsersThunk(selectedPage, this.props.pageSize)
     }
     render() {
-    if(!this.props.isAuth) return <Navigate to={'/login'}/>
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalCount={this.props.totalCount}
@@ -52,8 +51,7 @@ let mapStateToProps = (state) => {
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        isFollowing: state.usersPage.isFollowing,
-        isAuth: state.auth.isAuth
+        isFollowing: state.usersPage.isFollowing
     }
 }
 
@@ -69,7 +67,7 @@ let mapStateToProps = (state) => {
 }*/
 
 
-export default connect(mapStateToProps, {
+export default WithAuthNavigate(connect(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
@@ -79,7 +77,7 @@ export default connect(mapStateToProps, {
     getUsersThunk,
     followThunk,
     unfollowThunk
-})(UsersContainer);
+})(UsersContainer));
 
 
 

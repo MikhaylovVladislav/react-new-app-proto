@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import * as axios from "axios";
-import {setUserProfile, getUser} from "../../redux/profile-reducer";
+import {setUserProfile, getUserProfile} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom';
 class ProfileContainer extends React.Component {
@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
         if(!userId){
             userId=2;
         }
-    this.props.getUser(userId)
+    this.props.getUserProfile(userId)
     }
 
     render() {
@@ -33,7 +33,7 @@ let mapsStateToProps = (state) => {
 export let UseNavigate=(props)=>{
     const params = useParams();
     return(
-    <ProfileContainer match={params} profile={props.profile} setUserProfile={props.setUserProfile} getUser={props.getUser}/>
+    <ProfileContainer match={params} profile={props.profile} setUserProfile={props.setUserProfile} getUserProfile={props.getUserProfile}/>
     )
 }
-export default connect(mapsStateToProps, {setUserProfile, getUser})(UseNavigate);
+export default connect(mapsStateToProps, {setUserProfile, getUserProfile})(UseNavigate);

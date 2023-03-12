@@ -9,7 +9,7 @@ const Header = (props)=>{
 		<header className={st.header}>
 			<img src={logo} />
 			<div>
-				{!props.isAuth ? <NavLink to={'/Login'}>Login</NavLink>:<div><NavLink to={'/profile/'+props.authId}>{props.login} </NavLink></div> }
+				{!props.isAuth ? <NavLink to={'/login'}>Login</NavLink>:<div><NavLink to={'/profile/'+props.authId}>{props.login} </NavLink></div> }
 
 			</div>
 		</header>

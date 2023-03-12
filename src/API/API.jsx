@@ -17,7 +17,7 @@ export const UsersAPI ={
 export const UserFollowAPI ={
     follow: (userId)=> instance.post(`follow/${userId}`)
         .then(data => {if(data.resultCode===0){ return data.data}}),
-    unFollow: (userId)=> instance.delete(`follow/${userId}`)
+    unfollow: (userId)=> instance.delete(`follow/${userId}`)
         .then(data => {if(data.resultCode===0){ return data.data}})
 }
 

@@ -7,38 +7,21 @@ import {
     selectedPage,
     setTotalCount,
     toggleIsFetching,
-    toggleFollowingProgress
+ getUsersThunk, followThunk,unfollowThunk
 } from "../../redux/users-reducer";
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import {UsersAPI} from '../../API/API'
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        if (this.props.users.length === 0) {
-            UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-                .then(data => {
-                    this.props.setUsers(data.items);
-                    this.props.setTotalCount(data.totalCount);
-                    this.props.toggleIsFetching(false);
-                })
-
-        }
+            this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
 
     onChangePage = (selectedPage) => {
-        this.props.toggleIsFetching(true);
         this.props.selectedPage(selectedPage);
-        UsersAPI.getUsers(selectedPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.toggleIsFetching(false);
-            })
+        this.props.getUsersThunk(selectedPage, this.props.pageSize)
     }
-
     render() {
 
         return <>
@@ -52,7 +35,8 @@ class UsersContainer extends React.Component {
                    onChangePage={this.onChangePage}
                    isFollowing={this.props.isFollowing}
                    toggleIsFetching={this.props.toggleIsFetching}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress}
+                   followThunk={this.props.followThunk}
+                   unfollowThunk={this.props.unfollowThunk}
             />
         </>
 
@@ -90,7 +74,9 @@ export default connect(mapStateToProps, {
     setTotalCount,
     selectedPage,
     toggleIsFetching,
-    toggleFollowingProgress
+    getUsersThunk,
+    followThunk,
+    unfollowThunk
 })(UsersContainer);
 
 

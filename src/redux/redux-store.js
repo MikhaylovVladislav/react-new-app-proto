@@ -5,16 +5,18 @@ import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunk from "redux-thunk";
 
-let state= combineReducers({
+
+let state = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer
+
 });
 
-const store = createStore(state,applyMiddleware(thunk));
+const store = createStore(state, applyMiddleware(thunk));
 
-window.store=store
+window.store = store
 export default store;
 
 

@@ -14,6 +14,14 @@ export const UsersAPI ={
         .then(data=> data.data)
 }
 
+export const ProfileAPI ={
+
+    getStatus: (userId) => instance.get(`profile/status/${userId}`),
+    updateStatus: (status)=> instance.put(`profile/status`, {status: status})
+        .then(data=>{
+            return data.data})
+}
+
 export const UserFollowAPI ={
     follow: (userId)=> instance.post(`follow/${userId}`)
         .then(data => {if(data.resultCode===0){ return data.data}}),
@@ -23,7 +31,7 @@ export const UserFollowAPI ={
 
 export const AuthAPI = {
     auth: ()=> instance.get(`auth/me`)
-        .then(data=>{ if(data.data.resultCode===0){return data.data.data}})
+        .then(data=>{ /*if(data.data.resultCode===0)*/return data.data.data})
 
 }
 

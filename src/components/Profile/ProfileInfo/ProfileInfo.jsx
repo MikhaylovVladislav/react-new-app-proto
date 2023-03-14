@@ -20,7 +20,7 @@ let ProfileInfo = (props)=>{
                     </div>
                     <div className={st.info}>
                         <div className={st.FIO}> {props.profile.fullName}</div>
-                        <ProfileStatus />
+                        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                         <div>Обо мне: {props.profile.aboutMe}</div>
                         <div>Education: USATU</div>
                         <div>Amount battle of WOT:blitz: 4983</div>

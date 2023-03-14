@@ -7,7 +7,7 @@ let initState = {
     login: null,
     email: null,
     authId: null,
-    isAuth: false
+    isAuth: true
 }
 const authReducer = (state = initState, action) => {
     switch (action.type) {

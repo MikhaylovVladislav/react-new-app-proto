@@ -1,5 +1,4 @@
 const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
-const EDIT_NEW_MESSAGE = 'EDIT-NEW-MESSAGE';
 
 let initState = {
     messagesData: [
@@ -20,20 +19,12 @@ const dialogsReducer = (state=initState, action) =>{
 
     switch (action.type) {
         case ADD_MY_MESSAGE:{
-
-            let test=state.editNewMessage;
             return {
              ...state,
-                editNewMessage: '',
-                messagesData: [...state.messagesData, {id: 5, friendId: 3, isMyMess: true, messageText: test}]
+                messagesData: [...state.messagesData, {id: 5, friendId: 3, isMyMess: true, messageText: action.text}]
             }
         }
-        case EDIT_NEW_MESSAGE:{
-            return {
-                ...state,
-                editNewMessage: action.editText
-            };
-        }
+
         default:
             console.log('none name method at Dialogs');
             return state;
@@ -42,8 +33,6 @@ const dialogsReducer = (state=initState, action) =>{
     }
 }
 
-    export const addMyMessageActionCreator = () => ({type: ADD_MY_MESSAGE})
-    export const editNewMessageActionCreator = (text) => {
-        return {type: EDIT_NEW_MESSAGE, editText: text}
-    }
+    export const addMyMessageAC = (text) => ({type: ADD_MY_MESSAGE, text})
+
     export default dialogsReducer;

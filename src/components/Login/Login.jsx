@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Field, useForm } from 'react-final-form'
-import { useFormState } from 'react-final-form'
+import { Form, Field } from 'react-final-form'
 import {connect} from "react-redux";
 import {toAuth} from "../../redux/auth-reducer";
 
@@ -22,8 +21,6 @@ let LoginForm = (props) => {
         </Form>
     )
 }
-
-
 
 let Login = (props) => {
     return (<div>

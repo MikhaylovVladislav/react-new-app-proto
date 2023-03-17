@@ -1,0 +1,7 @@
+.errorSpan{
+    color: darkred;
+}
+
+.error textarea{
+    border-color: #dc1818;
+}

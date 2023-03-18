@@ -5,7 +5,6 @@ import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunk from "redux-thunk";
 
-
 let state = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
@@ -17,6 +16,7 @@ let state = combineReducers({
 const store = createStore(state, applyMiddleware(thunk));
 
 window.store = store
+
 export default store;
 
 

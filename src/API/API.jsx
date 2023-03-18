@@ -37,12 +37,10 @@ export const UserFollowAPI = {
             }
         })
 }
-
+/*{ console.log("s"); if(data.data.resultCode===0)*/
 export const AuthAPI = {
-    auth: () => instance.get(`auth/me`)
-        .then(data => {
-            if (data.data.resultCode === 0) return data.data.data
-        }),
+    auth: ()=>instance.get(`auth/me`)
+        .then(data => {if(data.data.resultCode===0) {return data.data}}),
     authLogin: (email, password, rememberMe) => instance.post(`auth/login`, {
         email: email,
         password: password,

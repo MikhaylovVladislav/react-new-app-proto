@@ -3,14 +3,17 @@ import {Form, Field} from 'react-final-form'
 import {connect} from "react-redux";
 import {toAuth} from "../../redux/auth-reducer";
 import {CustomElement} from "../Common/FormControls/FormControls";
+import {Navigate} from "react-router-dom";
 
 let LoginForm = (props) => {
     let CustomInput=CustomElement('input')
+    let ers;
     return (
         <Form
             onSubmit={values => {
-                console.log(values.login)
-                props.toAuth(values.login, values.password)
+               ers=props.toAuth(values.login, values.password)
+                console.log(ers)
+
             }}
 
 
@@ -35,13 +38,15 @@ let LoginForm = (props) => {
                 if(values.password && values.password.length <6){
                     errors.password="Min length 6"
                 }
+                if(!props.isLogSuccess){
 
-
+                    errors.password=props.messageResult
+                }
                 return errors
             }
             }
         >
-            {({handleSubmit, submitting, pristine, form}) => (
+            {({handleSubmit, submitting, pristine, form, submitError}) => (
                 <form onSubmit={handleSubmit}>
                     <Field name="login" placeholder="login ..." component={CustomInput}/>
                     <Field name="password" placeholder="password ..." type="password" component={CustomInput}/>
@@ -54,15 +59,22 @@ let LoginForm = (props) => {
 }
 
 let Login = (props) => {
-    return (<div>
-            <h1>Авторизация</h1>
-            <LoginForm toAuth={props.toAuth}/>
-        </div>
-    )
+    if (props.isAuth) {
+        return <Navigate to={'/profile'}/>
+    } else {
+        return (<div>
+                <h1>Авторизация</h1>
+
+                <LoginForm toAuth={props.toAuth} isLogSuccess={props.isLogSuccess} messageResult={props.messageResult} />
+            </div>
+        )
+    }
 }
 let mapsStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        isLogSuccess: state.auth.isLogSuccess,
+        messageResult: state.auth.messageResult
     }
 }
 

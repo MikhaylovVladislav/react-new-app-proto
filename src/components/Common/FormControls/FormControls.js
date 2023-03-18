@@ -1,5 +1,5 @@
 import stCurr from "./FormConstrols.module.css"
-import React, {Component} from "react";
+import React from "react";
 
 export const CustomTA = ({input, meta, ...props}) => {
     let hasError = meta.touched && meta.error;
@@ -14,10 +14,11 @@ export const CustomTA = ({input, meta, ...props}) => {
 
 
 export const CustomElement = (Component) => ({input, meta, ...props}) => {
-    let hasError = meta.touched && meta.error;
+    let hasError = meta.touched && (meta.error|| meta.submitError);
 
-    return (<div>{hasError && <span className={stCurr.errorSpan}>{meta.error}</span>} <Component {...input}
-                                                                                                     className={props.st + " " + (hasError ? stCurr.error : "")} {...props}/></div>)
+    return (<div>{hasError && <span className={stCurr.errorSpan}>{meta.error|| meta.submitError}</span>} <Component {...input}
+                                                                                                     className={props.st + " " + (hasError ? stCurr.error : "")} {...props}/>
+        {meta.submitError && <div className="error">{meta.submitError} ss</div>}</div>)
 
 
 }

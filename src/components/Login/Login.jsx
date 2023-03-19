@@ -57,7 +57,7 @@ let LoginForm = (props) => {
 
 let Login = (props) => {
     if (props.isAuth) {
-        return <Navigate to={'/profile'}/>
+        return <Navigate to={'/profile/'+props.userId}/>
     } else {
         return (<div>
                 <h1>Авторизация</h1>
@@ -71,7 +71,8 @@ let mapsStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         isLogSuccess: state.auth.isLogSuccess,
-        messageResult: state.auth.messageResult
+        messageResult: state.auth.messageResult,
+        userId: state.auth.userId
     }
 }
 

@@ -56,19 +56,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-/*let mapDispatchToProps=(dispatch)=>{
-    return{
-        follow: (userId)=>dispatch(followAC(userId)),
-        unfollow: (userId)=>dispatch(unfollowAC(userId)),
-        setUsers: (users)=>dispatch(setUsersAC(users)),
-        setTotalCount: (count)=>dispatch(setTotalCountAC(count)),
-        selectedPage: (page)=>dispatch(selectedPageAC(page)),
-        toggleIsFetching: (toggle)=>dispatch(toggleIsFetchingAC(toggle))
-    }
-}*/
-
-
-
 export default compose(
     WithAuthNavigate,
     connect(mapStateToProps, {

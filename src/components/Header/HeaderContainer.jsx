@@ -3,11 +3,10 @@ import * as axios from "axios";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {setAuthUserData, getAuthUserData, toLoginOut} from "../../redux/auth-reducer";
-import {AuthAPI} from '../../API/API'
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        this.props.getAuthUserData();
+        /*this.props.getAuthUserData();*/
     }
 
     render() {

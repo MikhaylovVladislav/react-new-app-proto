@@ -7,13 +7,10 @@ import {Navigate} from "react-router-dom";
 
 let LoginForm = (props) => {
     let CustomInput=CustomElement('input')
-    let ers;
     return (
         <Form
             onSubmit={values => {
-               ers=props.toAuth(values.login, values.password)
-                console.log(ers)
-
+               props.toAuth(values.login, values.password)
             }}
 
 

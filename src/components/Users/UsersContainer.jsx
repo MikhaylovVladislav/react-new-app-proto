@@ -13,11 +13,12 @@ import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {WithAuthNavigate} from "../../HOC/WithAuthNavigate";
 import {compose} from "redux";
-import {getIsFetching} from "../../redux/users-selector";
+import {getIsFetching, getUsers} from "../../redux/users-selector";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        console.log(this.props.users)
             this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
 
@@ -48,7 +49,7 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
+        users: getUsers(state),
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,

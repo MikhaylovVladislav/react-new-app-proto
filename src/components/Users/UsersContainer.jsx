@@ -13,6 +13,7 @@ import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {WithAuthNavigate} from "../../HOC/WithAuthNavigate";
 import {compose} from "redux";
+import {getIsFetching} from "../../redux/users-selector";
 
 
 class UsersContainer extends React.Component {
@@ -51,7 +52,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
+        isFetching: getIsFetching(state),
         isFollowing: state.usersPage.isFollowing
     }
 }
